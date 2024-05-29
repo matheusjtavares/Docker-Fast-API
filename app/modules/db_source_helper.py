@@ -5,14 +5,14 @@ import os
 
 load_dotenv(find_dotenv())
 
-class dbHelper():
-    
+class dbSourceHelper():
+    '''Class that connects to the source database. Use its functions to navigate ,or its engine to perform custom queries into it.'''
     def __init__(self):
         user = os.environ.get("POSTGRES_USER")
         password = os.environ.get("POSTGRES_PASSWORD")
-        host = os.environ.get("POSTGRES_HOST")
-        port = os.environ.get("POSTGRES_PORT") # Default PostgreSQL port is 5432
-        database = os.environ.get("POSTGRES_DB")
+        host = os.environ.get("POSTGRES_SOURCE_HOST")
+        port = 5432 # Default PostgreSQL port is 5432
+        database = os.environ.get("POSTGRES_SOURCE_DB")
 
         # Create the connection URL
         connection_url = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
