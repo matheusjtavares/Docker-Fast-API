@@ -33,7 +33,7 @@ def start_db_connection(query: QueryParams):
     variables_list = [x for x in variables_list if x in default_variables]
     if len(variables_list)==0:
         raise HTTPException(status_code=400 , detail="Choose one or more variables among variable from the following list: wind_speed,power or ambient_temperature. Use ',' for multiple variables")
-
+    print(variables_list)
 
     dbHelper = dbSourceHelper()
     query_df = dbHelper.get_input_data(variables_list,start_date=start_date_dt,end_date=end_date_dt)

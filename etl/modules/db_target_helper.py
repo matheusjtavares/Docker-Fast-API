@@ -10,11 +10,11 @@ class dbTargetHelper():
     def __init__(self):
         user = os.environ.get("POSTGRES_USER")
         password = os.environ.get("POSTGRES_PASSWORD")
-        host = 'localhost'
-        port = 5433 # Default PostgreSQL port is 5432
+        host = os.environ.get("POSTGRES_TARGET_HOST")
+        port = 5432 # Default PostgreSQL port is 5432
         database = os.environ.get("POSTGRES_TARGET_DB")
         # Create the connection URL
-        connection_url = f'postgresql+psycopg2://{user}:{password}@localhost:{port}/{database}'
+        connection_url = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
 
         # Create the SQLAlchemy engine
         self.engine = create_engine(connection_url)
@@ -30,7 +30,7 @@ class dbTargetHelper():
             
     def get_aggregation_methods(self)->pd.DataFrame:
         '''Gets all mapped aggregation methods from the database'''
-        query = '''SELECT * FROM aggregations'''
+        query = '''SELECT * FROM aggregation'''
         df = pd.read_sql(query,self.engine)
         return df
     

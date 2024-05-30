@@ -1,6 +1,23 @@
 services:
+  python-app:
+    build: 
+      context: ./etl
+    container_name: python-app
+    volumes:
+      - ./etl:/etl
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python ./etl/create_db.py && python ./etl/init_target_db.py 
+    depends_on:
+      - postgres-source
+      - postgres-target
+      - fastapi
+
+
   fastapi:
-    build: ./
+    build: .
+    container_name: fastapi-app
+    hostname: fastapihost
     ports:
       - 80:80
     command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
@@ -40,6 +57,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin-app
     env_file:
       - ./.env
     environment:
@@ -56,8 +74,6 @@ services:
     depends_on:
       - postgres-source
       - postgres-target
-    volumes:
-      -  ./entrypoint.sh:/entrypoint_custom.sh
     user: root
 
 volumes:
