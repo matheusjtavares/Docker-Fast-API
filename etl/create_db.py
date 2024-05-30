@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from modules.db_target_helper import dbTargetHelper
 from sqlalchemy import text
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey,Float,Time
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey,Float,DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -62,7 +62,7 @@ class aggregationTable(Base):
 class dataTable(Base):
     __tablename__ = 'data'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    ts = Column(Time, nullable=False)
+    ts = Column(DateTime, nullable=False)
     signal_id = Column(Integer, ForeignKey('signal.id'), nullable=False)
     agg_id = Column(Integer, ForeignKey('aggregation.id'), nullable=False)
     value = Column(Float, nullable=False)
