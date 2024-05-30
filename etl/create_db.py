@@ -9,8 +9,6 @@ import os
 from dotenv import load_dotenv,find_dotenv
 import time
 
-time.sleep(20)
-
 load_dotenv(find_dotenv())
 
 user = os.environ.get("POSTGRES_USER")
