@@ -49,8 +49,7 @@ docker-compose run python-app python .code/etl/etl_process.py
 ```python
 get_data_from_source_to_target(variables,start_date,end_date)
 ``` 
-. 
-##### Caso deseje testar o processo para mais variáveis ou outros períodos, basta editar os paramêtros na execução da função e reexecutar todos os passos descritos.
+##### Caso deseje testar o processo para mais variáveis ou outros períodos, basta editar os parâmetros na execução da função e reexecutar todos os passos descritos.
 
 
 
