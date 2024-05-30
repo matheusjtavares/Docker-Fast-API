@@ -7,7 +7,6 @@ services:
       - ./etl:/etl
     environment:
       - PYTHONUNBUFFERED=1
-    command: python ./etl/create_db.py && python ./etl/init_target_db.py 
     depends_on:
       - postgres-source
       - postgres-target
