@@ -3,7 +3,8 @@ from modules.db_target_helper import dbTargetHelper
 import pandas as pd
 import ast
 
-def get_data_from_source_to_target(variables,start_date,end_date):
+def get_data_from_source_to_target(variables,start_date,end_date) -> None:
+    '''Function that uses the created FastAPI to get data from the source db, aggregates and saves it to target'''
     # Initialize dbtarget class
     dbHelper = dbTargetHelper()
     # Set Request Parameters

@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 from dotenv import load_dotenv, find_dotenv
 import os
+from datetime import datetime as dt
 
 load_dotenv(find_dotenv())
 
@@ -29,7 +30,8 @@ class dbSourceHelper():
             print(f"Error: {e}")
             self.status =  "Failed to PostgreSQL database successful"
             
-    def get_input_data(self,columns,start_date,end_date):
+    def get_input_data(self,columns:str,start_date:dt,end_date:dt):
+        '''Gets all data within the data table'''
         if len(columns)==0:
             print('At least one column should be selected')
             raise Exception
