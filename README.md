@@ -29,8 +29,8 @@ This project demonstrates a containerized ETL (Extract, Transform, Load) pipelin
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/matheusjtavares/Docker-Fast-API.git
-   cd Docker-Fast-API
+   git clone https://github.com/matheusjtavares/ETL-Postgres-FastAPI.git
+   cd ETL-Postgres-FastAPI
    ```
 
 2. **Build and Start Services**:
