@@ -1,55 +1,95 @@
+# 🚀 Dockerized ETL Pipeline with FastAPI & PostgreSQL
 
-# Prova Data Eng
+This project demonstrates a containerized ETL (Extract, Transform, Load) pipeline using FastAPI, PostgreSQL, and Docker. It simulates data acquisition, processing, and loading between source and target databases, providing a robust foundation for scalable data engineering workflows.
 
-Esse código simula um processo de aquisição, tratamento e processamento de dados. Definiu-se um banco fonte, um banco alvo, uma API e um processo de ETL.
+## 🧰 Tech Stack
 
-## Pré-Requisitos
-##### Instalar docker. (docker-engine);
-##### Inicializar docker;
+- **FastAPI**: High-performance web framework for building APIs.
+- **PostgreSQL**: Relational database for both source and target data storage.
+- **Docker & Docker Compose**: Containerization and orchestration of services.
+- **PgAdmin4**: Web-based PostgreSQL database management tool.
+- **Python**: Scripting for ETL processes.
 
-```bash
-git clone https://github.com/matheusjtavares/Docker-Fast-API
+## 📁 Project Structure
+
+```
+├── app/                      # FastAPI application
+├── etl/                      # ETL scripts
+├── .env                      # Environment variables
+├── Dockerfile                # Docker image for FastAPI
+├── docker-compose.yml        # Docker Compose configuration
+├── entrypoint.sh             # Entry point script
+├── init.sql                  # SQL script to initialize source DB
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
 ```
 
-## Rotas/ Portas Locais:
-##### localhost:80 -> FastAPI
-##### localhost:5432-> Banco Fonte
-##### localhost:5433-> Banco Alvo
-##### localhost:5000-> PgAdmin4 Web
+## ⚙️ Setup Instructions
 
-## Containers / Serviços:
-##### FastAPI - fastapi-app
-##### Postgres Source - postgres-source-db
-##### Postgres Target - postgres-target-db
-##### PgAdmin4 Web - pgadmin-app
-##### Python - python-app
+1. **Clone the Repository**:
 
-## Passo a Passo - Execução
-#### 1. Abra o CMD/bash no diretório raiz do repositório 
-#### 2. Buildar docker-compose
-```bash
-docker-compose -f docker-compose.yml build
+   ```bash
+   git clone https://github.com/matheusjtavares/Docker-Fast-API.git
+   cd Docker-Fast-API
+   ```
+
+2. **Build and Start Services**:
+
+   ```bash
+   docker-compose build
+   docker-compose up -d
+   ```
+
+   This will set up the following services:
+   - FastAPI application accessible at `http://localhost:80`
+   - Source PostgreSQL database at `localhost:5432`
+   - Target PostgreSQL database at `localhost:5433`
+   - PgAdmin4 interface at `http://localhost:5000`
+
+3. **Initialize Target Database**:
+
+   ```bash
+   docker-compose run python-app python etl/create_db.py
+   ```
+
+   This script sets up the target database schema.
+
+4. **Run ETL Process**:
+
+   ```bash
+   docker-compose run python-app python etl/etl_process.py
+   ```
+
+   This script extracts data from the source database, transforms it as needed, and loads it into the target database.
+
+## 📊 Data Simulation
+
+- The source database is populated with randomized data ranging from 2024-05-01 to 2024-05-10, as defined in `init.sql`.
+- The ETL process can be customized by modifying the parameters in `etl_process.py` to handle different variables or date ranges.
+
+## 🧪 Testing the API
+
+Once the services are up and running, you can access the FastAPI documentation at:
+
 ```
-#### 2. Ativar serviços do docker-compose
-```bash
-docker-compose -f docker-compose.yml up -d
+http://localhost:80/docs
 ```
-##### A criação do container irá configurar os bancos de dados de acordo com as configurações estabelecidas. O banco fonte é alimentado por dados aleatórios conforme o arquivo init_db.sql (de 2024-05-01 até 2024-05-10 23:59).
-#### 3. Rodar Manualmente a criação do banco alvo
-```bash
-docker-compose run python-app python .code/etl/create_db.py
-```
-##### O banco alvo é criado durante a execução do código ./etl/create_db.py, que configura a database alvo e as tabelas de registro necessárias.
 
-#### 4. Rodar Manualmente a aquisição de dados
-```bash
-docker-compose run python-app python .code/etl/etl_process.py
-```
-##### O arquivo etl_process.py contém a seguinte função:
-```python
-get_data_from_source_to_target(variables,start_date,end_date)
-``` 
-##### Caso deseje testar o processo para mais variáveis ou outros períodos, basta editar os parâmetros na execução da função e reexecutar todos os passos descritos.
+This interactive interface allows you to test API endpoints and view the available operations.
 
+## 📌 Key Features
 
+- **Modular Design**: Separation of concerns between API, ETL processes, and database configurations.
+- **Containerization**: Simplified deployment and scalability using Docker.
+- **Data Management**: Efficient handling of data extraction, transformation, and loading between databases.
+- **User Interface**: PgAdmin4 provides a user-friendly interface for database management.
 
+## 👨‍💻 Author
+
+- **Matheus Tavares**  
+  - GitHub: [@matheusjtavares](https://github.com/matheusjtavares)  
+  - LinkedIn: [Matheus Tavares](https://www.linkedin.com/in/matheusjtavares/)  
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
