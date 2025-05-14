@@ -88,7 +88,7 @@ This interactive interface allows you to test API endpoints and view the availab
 
 - **Matheus Tavares**  
   - GitHub: [@matheusjtavares](https://github.com/matheusjtavares)  
-  - LinkedIn: [Matheus Tavares](https://www.linkedin.com/in/matheusjtavares/)  
+  - LinkedIn: [Matheus Tavares](https://www.linkedin.com/in/matheus-jonathan-dos-santos-tavares-49a383171/)  
 
 ## 📄 License
 
