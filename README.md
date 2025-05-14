@@ -1,3 +1,7 @@
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+[![Repo Size](https://img.shields.io/github/repo-size/matheusjtavares/ml_methods)](https://github.com/matheusjtavares/ml_methods)
+[![Last Commit](https://img.shields.io/github/last-commit/matheusjtavares/ml_methods)](https://github.com/matheusjtavares/ml_methods)
 # 🚀 Dockerized ETL Pipeline with FastAPI & PostgreSQL
 
 This project demonstrates a containerized ETL (Extract, Transform, Load) pipeline using FastAPI, PostgreSQL, and Docker. It simulates data acquisition, processing, and loading between source and target databases, providing a robust foundation for scalable data engineering workflows.
